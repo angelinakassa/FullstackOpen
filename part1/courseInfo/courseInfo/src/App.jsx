@@ -7,35 +7,45 @@ const App = () => {
   const part3 = 'State of a component'
   const exercises3 = 14
 
+  // Props are in a local scope
+  function Content() {
+    return (
+      <>
+        <Part
+          name={part1} exercises = {exercises1} 
+        /> <br/>
+         <Part
+          name={part2} exercises = {exercises2}
+        /> <br/>
+         <Part
+          name={part3} exercises = {exercises3}
+        />
+        {/* Part 1 {props.part1} has {props.exercises1} exercises.
+        Part 2 {props.part2} has {props.exercises2} exercises.
+        Part 3 {props.part3} has {props.exercises3} exercises. */}
+
+      </>
+    )
+  }
+
   return (
     <div>
       <Header course={course} />
-      <br/>
-    
-      <Content
+      <br />
+      <Content/>
+      {/* <Content
       part1={part1} part2 ={part2} part3={part3}
       exercises1={exercises1} exercises2 = {exercises2} exercises3={exercises3}
-      />
-
-      <Total totalNum={exercises1 + exercises2 + exercises3}/>
+      /> */}
+      <Total totalNum={exercises1 + exercises2 + exercises3} />
     </div>
   )
 }
 
-function Header (props) {
-  return (
-      <>
-        Course {props.course}
-      </>
-  )
-}
-
-function Content (props) {
+function Header(props) {
   return (
     <>
-      Part 1 {props.part1} has {props.exercises1} exercises. <br/>
-      Part 2 {props.part2} has {props.exercises2} exercises.<br/>
-      Part 3 {props.part3} has {props.exercises3} exercises.<br/>
+      Course {props.course}
     </>
   )
 }
@@ -43,8 +53,19 @@ function Content (props) {
 function Total(props) {
   return (
     <>
-    Number of exercises {props.totalNum}
-  </>
+    <br/>
+      Number of exercises is {props.totalNum}
+    </>
+  )
+}
+
+function Part(props) {
+  const { name } = props;
+  const {exercises} = props;
+  return (
+    <>
+      {name} has {exercises}
+    </>
   )
 }
 
